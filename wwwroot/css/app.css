@@ -67,6 +67,10 @@ a, .btn-link {
     display: none;
 }
 
+.red-text {
+    color: red;
+}
+
 @supports (-webkit-touch-callout: none) {
     .status-bar-safe-area {
         display: flex;

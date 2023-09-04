@@ -1,0 +1,51 @@
+﻿@page "/rng"
+
+<h1>Random Number Generator</h1>
+
+<p role="status" class="@(isInputValid ? "" : "red-text")">Number rolled: @(isInputValid ? rolledNumber.ToString() : "Range not possible")</p>
+
+
+<div>
+    <div style="display: flex; flex-direction: column; align-items: flex-start;">
+        <label for="lowerRange">Lower range number:</label>
+        <input id="lowerRange" @bind="lowerRange" />
+    </div>
+
+    <div style="display: flex; flex-direction: column; align-items: flex-start;">
+        <label for="upperRange">Upper range number:</label>
+        <input id="upperRange" @bind="upperRange" />
+    </div>
+</div>
+
+
+<div>
+    <button class="btn btn-primary" style="margin-top: 10px; margin-left: 20px;" @onclick="GenerateRandomNumber">Click me</button>
+</div>
+@code {
+    private bool isInputValid = true;
+    private int lowerRange;
+    private int upperRange;
+    private int rolledNumber;
+
+    private void GenerateRandomNumber()
+    {
+        if (lowerRange < upperRange)
+        {
+            isInputValid = true;
+            int range = upperRange - lowerRange;
+
+            Random random = new Random();
+
+            rolledNumber = lowerRange + random.Next(range + 1);
+        }
+        else if (lowerRange == upperRange)
+        {
+            isInputValid = true;
+            rolledNumber = lowerRange;
+        }
+        else
+        {
+            isInputValid = false;
+        }
+    }
+}
