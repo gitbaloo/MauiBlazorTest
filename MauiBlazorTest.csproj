@@ -51,6 +51,9 @@
 
     <ItemGroup>
         <PackageReference Include="CommunityToolkit.Maui.Maps" Version="1.0.4" />
+        <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="7.0.11" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.11" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.11" />
         <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
         <PackageReference Include="Microsoft.Maui.Controls.Maps" Version="7.0.92" />
     </ItemGroup>

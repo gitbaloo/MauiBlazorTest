@@ -1,0 +1,84 @@
+﻿@page "/primer"
+
+<h1>Primer</h1>
+
+<p>Check whether a number is a prime number</p>
+
+<div style="display: flex; flex-direction: column; align-items: flex-start;">
+        <label for="number">Choose number to check:</label>
+        <input id="number" @bind="number" />
+    </div>
+
+<p role="status">Answer: @answer</p>
+
+<button class="btn btn-primary" @onclick="CheckNumber">Check number!</button>
+
+
+
+@code {
+    string answer;
+    int number;
+    List<int> divisibleBy = new List<int>();
+    string divisibleByString;
+
+    private void CheckNumber()
+    {
+        if (number == 0)
+        {
+            answer = "The number 0 is neither a prime number nor a composite number.";
+        }
+
+        else if (number == 1)
+        {
+            answer = "The number 1 is neither a prime number nor a composite number.";
+        }
+
+        else if (number == 2)
+        {
+            answer = "The number 2 is the first prime number and the only even number that is also a prime number.";
+        }
+        else
+        {
+            divisibleBy.Clear();
+            int halfnumber = number / 2;
+            for (int i = 2; i <= halfnumber; i++)
+            {
+                if (number % i == 0)
+                {
+                    divisibleBy.Add(i);
+                }
+            }
+
+            if (divisibleBy.Count == 0)
+            {
+                answer = $"The number {number} is a prime number.";
+            }
+
+            else
+            {
+                divisibleByString = "";
+
+                foreach (int num in divisibleBy)
+                {
+                    if (divisibleBy.Count == 1)
+                    {
+                        divisibleByString = num.ToString();
+                    }
+
+                    else if (num == divisibleBy[divisibleBy.Count - 1])
+                    {
+                        divisibleByString = divisibleByString.Remove(divisibleByString.LastIndexOf(",")) + " and " + num;
+                        // divisibleByString = divisibleByString + " and " + num;
+                    }
+                    
+                    else
+                    {
+                        divisibleByString = divisibleByString + " " + num + ", ";
+                    }
+                }
+                answer = $"The number {number} is not a prime number. It is divisible with {divisibleByString}.";
+            }
+        }
+    }
+}
+
